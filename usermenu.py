@@ -27,33 +27,46 @@ class UserMenu():
         print("1. View existing Customers")
         print("2. Add Customer")
         print("3. Exit\n")
-        selection = input("Please choose an option (1-5): ")
+        selection = input("Please choose an option (1-3): ")
 
         if(selection == "1"):
-            self.clearscreen()
-            print("Forename   Surname    Phone No.  Email Address                  Postcode")
-            print("========================================================================")
-
-            for customer in ds.customers:
-                print(customer)
-
-            print("Return to continue...")
-            input()
+            self.view_customers(ds)
 
         elif(selection == "2"):
-            print("Add a new Customer")
-            print("==================\n")
-            forename = input("Forename: ")
-            surname = input("Surname: ")
-            phone_number = input("Phone Number: ")
-            email_address = input("Email Address: ")
-            postcode = input("Postcode: ")
-
-            customer = Customer(forename, surname, phone_number, email_address, postcode)
-
-            ds.add_customer(customer)
-
-            print("Return to continue...")
-            input()            
+            self.add_customer(ds)
 
         return selection
+
+    def view_customers(self, ds):
+        self.clearscreen()
+        print("ID    Forename   Surname    Phone No.  Email Address                  Postcode   Balance")
+        print("===========================================================================================")
+
+        for customer in ds.customers:
+            print(customer)
+
+        print("Return to continue...")
+        input()        
+
+    def add_customer(self, ds):
+        print("Add a new Customer")
+        print("==================\n")
+        forename = input("Forename: ")
+        surname = input("Surname: ")
+        phone_number = input("Phone Number: ")
+        email_address = input("Email Address: ")
+        postcode = input("Postcode: ")
+
+        balance = False
+        while balance == False:
+            try:
+                balance = float(input("Initial Balance: "))
+            except:
+                print("Invalid balance. Please enter a numeric value...")
+
+        customer = Customer(forename, surname, phone_number, email_address, postcode, balance)
+
+        ds.add_customer(customer)
+
+        print("Return to continue...")
+        input()

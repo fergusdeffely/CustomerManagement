@@ -6,16 +6,30 @@
 
 class Customer:
 
-    def __init__(self, forename, surname, phone_number, email_address, postcode):
+    next_id = 0
+
+    def __init__(self, forename, surname, phone_number, email_address, postcode, balance):
+
+        self._id = Customer.next_id
+        Customer.next_id = Customer.next_id + 1
 
         self._forename = forename
         self._surname = surname 
         self._phone_number = phone_number
         self._email_address = email_address
         self._postcode = postcode
+        self._balance = balance
 
     def __repr__(self):
-        return f"{self.forename.ljust(10)} {self.surname.ljust(10)} {self.phone_number.ljust(10)} {self.email_address.ljust(30)} {self.postcode.ljust(10)}"
+        repr = f"{str(self.id).ljust(5)} {self.forename.ljust(10)} {self.surname.ljust(10)} "
+        repr = repr + f"{self.phone_number.ljust(10)} {self.email_address.ljust(30)} "
+        repr = repr + f"{self.postcode.ljust(10)} {self.balance:.2f}"
+
+        return repr
+        
+    @property
+    def id(self):
+        return self._id
 
     @property
     def forename(self):
@@ -56,3 +70,11 @@ class Customer:
     @postcode.setter
     def postcode(self, new_postcode):
         self._postcode = new_postcode
+
+    @property
+    def balance(self):
+        return self._balance
+
+    @balance.setter
+    def balance(self, new_balance):
+        self._balance = new_balance

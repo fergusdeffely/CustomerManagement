@@ -10,8 +10,8 @@ class Datastore:
 
     def load_customers(self):
 
-        self._customers.append(Customer("Aaaaaa", "Bbbbbb", "0987654321", "aaaaaa.bbbbbb@test.org", "A12 BC34"))
-        self._customers.append(Customer("Cccc", "Dddd", "1234567890", "cccc.dddd@test.org", "D56 EF78"))
+        self._customers.append(Customer("Aaaaaa", "Bbbbbb", "0987654321", "aaaaaa.bbbbbb@test.org", "A12 BC34", 123.50))
+        self._customers.append(Customer("Cccc", "Dddd", "1234567890", "cccc.dddd@test.org", "D56 EF78", 67.90))
 
     def add_customer(self, customer):
 
