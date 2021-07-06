@@ -26,6 +26,9 @@ class Customer:
         repr = repr + f"{self.postcode.ljust(10)} {self.balance:.2f}"
 
         return repr
+
+    def file_text(self):
+        return f"{self.forename}|{self.surname}|{self.phone_number}|{self.email_address}|{self.postcode}|{self.balance:.2f}" 
         
     @property
     def id(self):

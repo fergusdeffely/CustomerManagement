@@ -1,5 +1,6 @@
 import os
 from customer import Customer 
+from file_parser import FileParser
 
 class UserMenu():
 
@@ -18,6 +19,12 @@ class UserMenu():
                 self.clearscreen()
                 print(f"Invalid menu option [{selection}]. Press return to try again.")
                 input()
+
+        # application is now exiting - write customers list to file
+        file_parser = FileParser()
+
+        file_parser.write_customers("custs.txt", ds.customers)
+
 
 
     def show_user_menu(self, ds):
