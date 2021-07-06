@@ -38,21 +38,19 @@ class FileParser():
         
         fo = open(filename, "w")
 
+        # list to contain text versions of customers for writing
         lines = []
-        #first_line = True
+        first_customer = True
 
-# aaaaa|bbbbb|0891234567|aaaaa.bbbbb@test.org|A11 B222|12.75
-# aaaaa|bbbbb|0891234567|aaaaa.bbbbb@test.org|A11 B222|12.75
-# ccccc|ddddd|0897654321|ccccc.ddddd@test.org|C11 D222|230.67
-# aaaaa|bbbbb|0891234567|aaaaa.bbbbb@test.org|A11 B222|12.75
-# ccccc|ddddd|0897654321|ccccc.ddddd@test.org|C11 D222|230.67
-# a|c|b|d|e|15.00
-
+        # build a list of customer file strings
         for customer in customers:
 
-            # write customer to file
-
-            lines.append(customer.file_text())
-            fo.writelines(lines)
-
+            if first_customer == True:
+                lines.append(customer.file_text())
+                first_customer = False
+            else:
+                # if this isn't the first customer, add a newline before writing
+                lines.append(f"\n{customer.file_text()}")
+        
+        fo.writelines(lines)
         fo.close()
