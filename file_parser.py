@@ -5,6 +5,7 @@ class FileParser():
 
     def read_customers(self, filename):
 
+        # todo: add exception handling
         fo = open(filename, "r")
 
         # store the file contents as a list of strings
@@ -36,6 +37,7 @@ class FileParser():
 
     def write_customers(self, filename, customers):
         
+        # todo: add exception handling
         fo = open(filename, "w")
 
         # list to contain text versions of customers for writing
