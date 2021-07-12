@@ -23,7 +23,6 @@ class Datastore:
 
         self._customers.append(customer)
 
-
     @property
     def customers(self):
         return self._customers

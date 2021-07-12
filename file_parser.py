@@ -1,18 +1,23 @@
 from customer import Customer
 
-
 class FileParser():
 
     def read_customers(self, filename):
 
-        # todo: add exception handling
-        fo = open(filename, "r")
-
-        # store the file contents as a list of strings
-        lines = fo.readlines()
-        fo.close()
-
         customers = []
+
+        try:
+            fo = open(filename, "r")
+
+            # store the file contents as a list of strings
+            lines = fo.readlines()
+            fo.close()
+        except IOError:
+            print(f"Warning: Could not open file {filename} for reading.")
+            input("Return to continue...")
+
+            # return the empty list of customers
+            return customers
 
         # parse each line of customers file and create a Customer object
         for line in lines:
@@ -30,15 +35,11 @@ class FileParser():
         phone_number = fields[2]
         email_address = fields[3]
         postcode = fields[4]
-        # todo: add exception handler
         balance = float(fields[5])
 
         return Customer(forename, surname, phone_number, email_address, postcode, balance)
 
     def write_customers(self, filename, customers):
-        
-        # todo: add exception handling
-        fo = open(filename, "w")
 
         # list to contain text versions of customers for writing
         lines = []
@@ -54,5 +55,10 @@ class FileParser():
                 # if this isn't the first customer, add a newline before writing
                 lines.append(f"\n{customer.file_text()}")
         
-        fo.writelines(lines)
-        fo.close()
+        try:
+            fo = open(filename, "w")
+            fo.writelines(lines)
+            fo.close()
+        except IOError:
+            print(f"Warning: Could not open {filename} for writing")
+            input("Return to continue...")
